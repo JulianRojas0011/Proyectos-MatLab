@@ -3,8 +3,8 @@
 %%
 
 clc;
-% Ventana para definir la funci髇 objetivo ===========================================
-prompt  = {'Funci髇 objetivo = ', 'max == 1 or min==2','Numero de restricciones = '};
+% Ventana para definir la funcion objetivo ===========================================
+prompt  = {'Funcion objetivo = ', 'max == 1 or min==2','Numero de restricciones = '};
 lineno  = 1;
 title   = 'Ingreso de Datos';
 def     = {'[ ]','0','0'};
@@ -23,7 +23,7 @@ str2    = struct('var_base',{},'valor',{});
 
 % Ventana para definir restricciones ==========================================
 for i=1:num_restr %Se definen los tipos de restricciones en orden
-    prompt          = {strcat('Ingrese el tipo de restricci髇 para la condici髇 ',num2str(i),' (<=,>=,=):')};
+    prompt          = {strcat('Ingrese el tipo de restricci贸n para la condicion ',num2str(i),' (<=,>=,=):')};
     title           = 'Ingreso de Datos';
     def             = {''};
     options.Resize  = 'on';
@@ -54,7 +54,7 @@ u               = inputdlg(prompt,title,lineno,def,options);
 second          = str2num(u{1});
 % ====================================================================================
 
-M               = 1000*max(max(sc)); % Penalizaci髇 para el algoritmo "GRAN M"
+M               = 1000*max(max(sc)); % Penalizaci贸n para el algoritmo "GRAN M"
 sc1             = []; %Matriz de Variables de holgura
 sc2             = []; %Matriz de Variables artificiales
 v_a             = zeros(1,length(cout));
@@ -95,7 +95,7 @@ end
 %=======================================
 
 
-sc      = [sc,sc1,sc2]; %Nueva Matriz de restricciones con variables artificiales y de holgura a馻didas
+sc      = [sc,sc1,sc2]; %Nueva Matriz de restricciones con variables artificiales y de holgura a帽adidas
 vari    = [];
 vari_a  = [];
 vari_e  = [];
@@ -115,7 +115,7 @@ for i=1:size(sc,2)
 end
 
 
-% Primera iteraci髇
+% Primera iteraci贸n
 x=[v_a,var_exceso,v_ari];
 if isempty(v_ari)
     v_ar    = ones(1,length(v_ari));
@@ -163,15 +163,15 @@ end
 fprintf('\n');
 disp('======================== Problema en forma estandar ========================');
 disp(['Variables : ',vari]);
-disp(['                   -Variables No B醩icas     : ',vari_a]);
-disp(['                   -Variables B醩icas        : ',vari_e]);
+disp(['                   -Variables No B谩sicas     : ',vari_a]);
+disp(['                   -Variables B谩sicas        : ',vari_e]);
 disp(['                   -Variables Artificiales   : ',vari_ar]);
 disp('============================================================================');
 disp(' ');
 disp('===============================   Tableau 0  ===============================');
-disp(['Inicializaci髇 de variables : ',vari]);
-disp(['                   -Variables No B醩icas     : ',num2str(v_a)]);
-disp(['                   -Variables B醩icas        : ',num2str(var_exceso)]);
+disp(['Inicializaci贸n de variables : ',vari]);
+disp(['                   -Variables No B谩sicas     : ',num2str(v_a)]);
+disp(['                   -Variables B谩sicas        : ',num2str(var_exceso)]);
 disp(['                   -Variables Artificiales   : ',num2str(v_ar)]);
 disp('============================================================================');
 disp(' ');
@@ -213,7 +213,7 @@ while arret==1
     if k~=0
         num2=k;
     else
-        disp('No se puede encontrar soluci髇 : La soluci髇 es infactible ');
+        disp('No se puede encontrar soluci贸n : La soluci贸n es infactible ');
         break;
     end
     V_sort=str2(1,num2).var_base;
@@ -250,7 +250,7 @@ disp(['===============================   Tableau ',num2str(t),' ================
 disp(['Variable de entrada  : ',num2str(V_ent)]);
 disp(['Variable de salida   : ',num2str(V_sort)]);
 disp(['Pivote               : ',num2str(pivot)]);
-disp(['Variables B醩icas    : ',num2str(Vb)]);
+disp(['Variables B谩sicas    : ',num2str(Vb)]);
 disp('============================================================================');
 disp(' ');
 disp(['Cj                   : ',num2str(Cj)]);
